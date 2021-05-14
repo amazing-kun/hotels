@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <el-button type="danger">危险按钮</el-button>
+    <!--img src="./assets/logo.png"-->
     <router-view/>
   </div>
 </template>
 
 <script>
+import test1 from './views/test/test1'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    test1
+  }
 }
 </script>
 
