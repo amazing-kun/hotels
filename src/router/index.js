@@ -1,15 +1,45 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
+import Login from "../views/Login";
+import Home from "../views/Home";
 
-export default new Router({
-  routes: [
+Vue.use(VueRouter);
+
+// const routes = [
+//
+// ]
+
+const router = new VueRouter({
+  routes:[
+    {
+      path:'/login',
+      component: Login,
+      name: 'Login'
+    },
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect:Home
+    },
+    {
+      path: '/home',
+      component:Home,
+      name:'Home',
     }
   ]
-})
+});
+
+//挂载路由导航守卫
+router.beforeEach((to,from,next) => {
+  //to将要访问的路径
+  //from从哪个路径跳转
+  //next()放行   , next('/login')强制跳转
+  if(to.path === '/login') return next();
+  //获取token
+  let tokenStr = window.sessionStorage.getItem('token');
+  if(!tokenStr) return next('/login');
+  next();
+
+});
+
+export default router
