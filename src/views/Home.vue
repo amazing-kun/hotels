@@ -1,15 +1,21 @@
 <template>
     <div>
-        Home组件
+          <TopBar></TopBar>
     </div>
+
 </template>
 
 <script>
+
+    import TopBar from "./common/TopBar";
+    import LoginDialog from "./dialog/LoginDialog";
     export default {
-        name: "Home"
+        name: "Home",
+      components: {LoginDialog, TopBar},
+
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 
 </style>

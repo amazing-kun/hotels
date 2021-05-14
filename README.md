@@ -42,6 +42,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 2.修改项目端口号为8081；
 3.添加视图view文件夹并新增Home.vue与Login.vue；
 4.编写登陆界面大概模式；
+5.抛弃4的登录页面，采用弹窗式登录
 
 ```
 
