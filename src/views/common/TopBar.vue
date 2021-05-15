@@ -143,7 +143,7 @@
   }
 
   .el-menu-demo{
-    pidding:0,0,0;
+    // pidding:0,0,0;
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
