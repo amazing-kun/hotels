@@ -3,7 +3,11 @@
   <!-- 在表头这里绑定搜索的数据源 -->
   <el-table
     ref="multipleTable"
-    :data="tableData.filter(data => !search || data.type.toLowerCase().includes(search.toLowerCase()))"
+    :data="tableData.filter((
+            data => !search ||
+             data.state.toLowerCase().includes(search.toLowerCase()))
+            
+             )"
     tooltip-effect="dark"
     style="width: 100%"
     @selection-change="handleSelectionChange">
@@ -98,13 +102,7 @@
     <!-- 功能区 -->
    <el-table-column
       align="right">
-      <template slot="header" >
-        <el-input
-          v-model="search"
-          size="mini"
-          placeholder="搜索房间类型"/>
-      </template>
-      <!-- 编辑功能备用 -->
+
       <!-- <template slot-scope="scope">
         <el-button
           size="mini"
@@ -137,7 +135,6 @@
   export default {
     data() {
       return {
-         
         page: 1,      //当前页码,用于翻页
         total: 4,     //总记录数,用于渲染分页
         limit: 3,     //每页记录数
@@ -179,7 +176,7 @@
           type: '棋牌套房'
         }],
         multipleSelection: [],
-        search: ''
+        search: '空闲'
       }
     },
 

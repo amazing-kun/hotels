@@ -46,3 +46,11 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ```
 
+> 2021-05-15
+
+```
+1:删除了request.js等无关文件
+2：增加了空闲客房的页面
+3：未解决分页问题，未解决编辑功能
+```
+

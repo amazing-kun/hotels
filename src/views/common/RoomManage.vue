@@ -134,9 +134,10 @@
 
 <script>
   export default {
+    
     data() {
       return {
-        name: RoomManage,  
+        
         page: 1,      //当前页码,用于翻页
         total: 4,     //总记录数,用于渲染分页
         limit: 3,     //每页记录数
