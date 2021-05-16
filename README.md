@@ -54,3 +54,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 3：未解决分页问题，未解决编辑功能
 ```
 
+> 2021-05-16
+
+```
+1.编写注册页面
+```
+

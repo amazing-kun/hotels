@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button  type="text" @click="dialogFormVisible=true">登录</el-button>
+    <el-button  type="default" style="border: transparent" @click="dialogFormVisible=true">登录</el-button>
         <el-dialog :visible.sync="dialogFormVisible" width="380px" center="false">
           <div class="el-dialog_header" >
             <span class="el-dialog_title">账号登录</span>
@@ -25,7 +25,7 @@
           </div>
           <div class="btns-wrap">
             <el-button type="primary" @click="login">登录</el-button>
-            <el-button @click="what">注册</el-button>
+            <el-button @click="register">注册</el-button>
           </div>
         </el-dialog>
   </div>
@@ -82,6 +82,11 @@
 
         })
 
+      },
+      register(){
+        this.$router.push({
+          path: '/register',
+        })
       }
     },
   }

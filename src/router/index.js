@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Login from "../views/Login";
 import Home from "../views/Home";
 import EmptyRoom from "../views/common/EmptyRoom.vue"
+import Register from "../views/Register";
 
 Vue.use(VueRouter);
 
@@ -20,7 +21,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-      redirect:Home
+      redirect:Register
     },
     {
       path: '/home',
@@ -28,9 +29,14 @@ const router = new VueRouter({
       name:'Home',
     },
     {
-       path: '/emptyroom',
-       component: EmptyRoom,
-       name: 'EmptyRoom' 
+      path: '/emptyroom',
+      component: EmptyRoom,
+      name: 'EmptyRoom'
+    },
+    {
+      path: '/register',
+      component: Register,
+      name: 'Register'
     }
 
   ]
