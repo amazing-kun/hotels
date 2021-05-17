@@ -104,16 +104,14 @@
    <el-table-column
       align="right">
 
-      <!-- <template slot-scope="scope">
+        <!--入住按钮  -->
+      <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-      </template> -->
+          @click="handleRegister(scope.$index, scope.row)">入住</el-button>
+      </template>
     </el-table-column>
+
 
 
 
@@ -127,6 +125,40 @@
       :page-size="limit">
     </el-pagination>
 
+    <!-- 订单dialogue -->
+    <template>
+      <el-dialog
+        title="入住登记"
+        :visible.sync="registerVIsible"
+        width="30%"
+        :before-close="handleClose">
+
+            <el-form ref="form"  label-width="80px">
+            <el-form-item label="客人姓名">
+              <el-input v-model="name" ></el-input>
+            </el-form-item>
+            <el-form-item label="身份证号码">
+              <el-input v-model="id"></el-input>
+            </el-form-item>
+            <el-form-item label="房间号码">
+              <el-input v-model="roomNum"></el-input>
+            </el-form-item>
+            <el-form-item label="联系电话">
+              <el-input v-model="tel"></el-input>
+            </el-form-item>
+            <el-form-item label="备注">
+              <el-input v-model="notes"></el-input>
+            </el-form-item>
+          </el-form>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="registerVIsible = false">取 消</el-button>
+        <el-button type="primary" @click="addOrder()">确 定</el-button>
+      </span>
+     </el-dialog>
+    </template>
+
+>>>>>>> 788aa8623d2cb6c6f24111a642c3fa04fb000df8
 
 </div>
 </template>
@@ -140,9 +172,19 @@
     components: {Room,TopBar},
     data() {
       return {
+        //临时的订单信息(其实可以考虑用一个对象存储，待修改)
+        name: '',       //姓名
+        id: '',         //身份证
+        roomNum: '',    //房号
+        tel: '',        //号码
+        notes: '',      //备注
+        registerVIsible: false,     //控制订单信息的dialogue
+        //分页（没想好怎么做，待做）
         page: 1,      //当前页码,用于翻页
         total: 4,     //总记录数,用于渲染分页
         limit: 3,     //每页记录数
+
+        //客房数据
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -180,7 +222,23 @@
           room: '310',
           type: '棋牌套房'
         }],
+        //订单数据
+        order: [{
+            name: 'a',
+            id: '1',
+            roomNum: '11',
+            tel: '111',
+            notes: '1111',
+           },{
+            name: 'b',
+            id: '2',
+            roomNum: '22',
+            tel: '222',
+            notes: '2222',
+           }
+        ],
         multipleSelection: [],
+        //默认搜索状态为空闲的客房
         search: '空闲'
       }
     },
@@ -230,7 +288,38 @@
         const property = column['property'];
         return row[property] === value;
       },
+      //入住处理
+      handleRegister(index, row) {
+        //弹出弹框
+        this.registerVIsible=true;
+        //更新房间状态
+        row.state='使用'
+        console.log(row.state);
+      },
+      addOrder(){
+        //添加订单
+        this.order.push({
+            name: this.name,
+            id: this.id,
+            roomNum: this.roomNum,
+            tel: this.tel,
+            notes: this.notes,
+        });
+        //数据归零
+            this.name='',
+            this.id='',
+            this.roomNum='',
+            this.tel='',
+            this.notes='',
 
+        //关闭弹窗
+        this.registerVIsible=false
+        //在控制台查看订单是否添加成功
+        console.log(this.order);
+      },
+      handleClose(){
+        //可以在这里增加确认关闭的功能（待做）
+      },
       // 数据处理
       handleEdit(index, row) {
         console.log(index, row);
