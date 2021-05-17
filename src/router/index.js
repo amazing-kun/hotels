@@ -5,6 +5,8 @@ import Login from "../views/Login";
 import Home from "../views/Home";
 import EmptyRoom from "../views/common/EmptyRoom.vue"
 import Register from "../views/Register";
+import OrderPage from "../views/h_order/OrderPage";
+
 
 
 Vue.use(VueRouter);
@@ -23,7 +25,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-      redirect:Home
+      redirect: OrderPage,
     },
     {
       path: '/home',
@@ -39,7 +41,12 @@ const router = new VueRouter({
       path: '/register',
       component: Register,
       name: 'Register',
-    }
+    },
+    {
+      path:'/orderPage',
+      component: OrderPage,
+      name: 'OrderPage'
+    },
 
 
   ]
@@ -52,6 +59,7 @@ router.beforeEach((to,from,next) => {
   //next()放行   , next('/login')强制跳转
   if(to.path === '/login') return next();
   else if (to.path === '/register') return next();
+  else if (to.path === '/orderPage') return next();
   //获取token
   let tokenStr = window.sessionStorage.getItem('token');
   if(!tokenStr) return next('/login');
