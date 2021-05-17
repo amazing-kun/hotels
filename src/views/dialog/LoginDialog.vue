@@ -13,8 +13,8 @@
 
             <!--登录表单区-->
             <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" >
-              <el-form-item  prop="username">
-                <el-input v-model="loginForm.username" prefix-icon="el-icon-user-solid"></el-input>
+              <el-form-item  prop="email">
+                <el-input v-model="loginForm.email" prefix-icon="el-icon-message"></el-input>
               </el-form-item>
 
               <el-form-item prop="password">
@@ -39,15 +39,15 @@
         dialogTableVisible: false,
         dialogFormVisible: false,
         loginForm: {
-          username: '',
+          email: '',
           password: '',
         },
         //表单验证规则对象
         loginFormRules: {
           //验证用户名是否合法
-          username: [
+          email: [
             {required: true, message: '请输入账号', trigger: 'blur'},
-            {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+            { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] },
           ],
           //验证密码是否合法
           password: [
@@ -68,9 +68,9 @@
          */
         this.$refs.loginFormRef.validate(async (valid) => { //valid为返回值，布尔类型
           if (!valid) return;
-          const {data: res} = await this.$http.post('login', this.loginForm);
-
-          if (res.meta.status !== 200) return this.$message.error('登录失败');
+          const {data:res}  = await this.$http.post('/hotel/user/login',this.loginForm);
+          console.log(res);
+          if (res.success !== true) return this.$message.error('登录失败, '+res.message);
           this.$message.success('登录成功');
           /** 1、将登陆成功之后的token, 保存到客户端的sessionStorage中; localStorage中是持久化的保存
            * 1.1 项目中出现了登录之外的其他API接口，必须在登陆之后才能访问

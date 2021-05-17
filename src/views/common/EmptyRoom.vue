@@ -1,23 +1,24 @@
 <template>
 <div>
   <!-- 在表头这里绑定搜索的数据源 -->
+  <TopBar></TopBar>
   <el-table
     ref="multipleTable"
     :data="tableData.filter((
             data => !search ||
              data.state.toLowerCase().includes(search.toLowerCase()))
-            
+
              )"
     tooltip-effect="dark"
     style="width: 100%"
     @selection-change="handleSelectionChange">
-    
+
     <!-- 选择框 -->
     <el-table-column
       type="selection"
       width="55">
     </el-table-column>
-    
+
     <!-- 顶部框 -->
     <el-table-column
       prop="type"
@@ -70,7 +71,7 @@
       width="100"
       :filters="[{ text: '空闲', value: '空闲' }, { text: '预定', value: '预定' },{text: '使用',value: '使用'}]"
       :filter-method="filterTag_state"
-      filter-placement="bottom-end">     
+      filter-placement="bottom-end">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.state === '空闲' ? 'primary' : 'success'"
@@ -83,14 +84,14 @@
       label="简介"
       show-overflow-tooltip>
     </el-table-column>
-    
+
     <el-table-column
       prop="price"
       label="价格"
       width="100"
       :filters="[{ text: '300', value: '300' }, { text: '500', value: '500' }]"
       :filter-method="filterTag_price"
-      filter-placement="bottom-end">     
+      filter-placement="bottom-end">
       <!-- 填充数据 -->
       <template slot-scope="scope">
         <el-tag
@@ -112,7 +113,7 @@
           type="danger"
           @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
       </template> -->
-    </el-table-column>  
+    </el-table-column>
 
 
 
@@ -125,14 +126,18 @@
       :total="total"
       :page-size="limit">
     </el-pagination>
-  
+
 
 </div>
 </template>
 
 
 <script>
+  import Room from "./RoomManage";
+  import TopBar from "./TopBar";
+
   export default {
+    components: {Room,TopBar},
     data() {
       return {
         page: 1,      //当前页码,用于翻页
@@ -195,7 +200,7 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
-      
+
       // 标签筛选功能
       resetDateFilter() {
         this.$refs.filterTable.clearFilter('date');
@@ -211,16 +216,16 @@
       },
       filterTag_state(value, row) {
         return row.state === value;
-      },    
+      },
       filterTag_bedNum(value, row) {
         return row.bedNum === value;
-      },          
+      },
       filterTag_room(value, row) {
         return row.room === value;
-      },    
+      },
       filterTag_type(value, row) {
         return row.type === value;
-      },    
+      },
       filterHandler(value, row, column) {
         const property = column['property'];
         return row[property] === value;

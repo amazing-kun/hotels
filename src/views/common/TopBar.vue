@@ -1,5 +1,5 @@
 <template>
-      <div>
+      <div style="margin-left: 8%;">
         <el-container >
           <el-header class="header-content" style="text-align: right; font-size: 12px">
             <a href="www.baidu.com" class="logo-box">

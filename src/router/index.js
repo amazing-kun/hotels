@@ -6,6 +6,7 @@ import Home from "../views/Home";
 import EmptyRoom from "../views/common/EmptyRoom.vue"
 import Register from "../views/Register";
 
+
 Vue.use(VueRouter);
 
 // const routes = [
@@ -13,6 +14,7 @@ Vue.use(VueRouter);
 // ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes:[
     {
       path:'/login',
@@ -21,7 +23,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-      redirect:Register
+      redirect:Home
     },
     {
       path: '/home',
@@ -36,23 +38,25 @@ const router = new VueRouter({
     {
       path: '/register',
       component: Register,
-      name: 'Register'
+      name: 'Register',
     }
+
 
   ]
 });
 
 //挂载路由导航守卫
-// router.beforeEach((to,from,next) => {
-//   //to将要访问的路径
-//   //from从哪个路径跳转
-//   //next()放行   , next('/login')强制跳转
-//   if(to.path === '/login') return next();
-//   //获取token
-//   let tokenStr = window.sessionStorage.getItem('token');
-//   if(!tokenStr) return next('/login');
-//   next();
-//
-// });
+router.beforeEach((to,from,next) => {
+  //to将要访问的路径
+  //from从哪个路径跳转
+  //next()放行   , next('/login')强制跳转
+  if(to.path === '/login') return next();
+  else if (to.path === '/register') return next();
+  //获取token
+  let tokenStr = window.sessionStorage.getItem('token');
+  if(!tokenStr) return next('/login');
+  next();
+
+});
 
 export default router

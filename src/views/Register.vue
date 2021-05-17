@@ -25,15 +25,23 @@
         <el-form-item prop="passwordAgain" label="确认密码">
           <el-input type="password" v-model="ruleForm.passwordAgain" placeholder="请确认密码"></el-input>
         </el-form-item>
+
+        <el-form-item style="margin-top: 10%;margin-right: 15%">
+          <el-button type="primary" @click="submitForm()">下一步</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
       </el-form>
 
-      <div style="margin-left: 25%;margin-top: 10%">
-        <el-button type="primary" @click="submitForm()">下一步</el-button>
-        <el-button v-show="active == 0" @click="resetForm('ruleForm')">重置</el-button>
+      <div v-show="active == 1" style="margin-left: 20%;margin-top: 10%">
+        <el-button type="success" icon="el-icon-check" circle></el-button> <h1>快去邮箱激活账号吧！</h1>
       </div>
 
-      <div v-show="active == 1" style="margin-left: 20%;margin-top: 10%">
-        <el-button type="success" icon="el-icon-check" circle></el-button> <h1>注册成功</h1>
+      <div v-show="active == 2" style="margin-left: 20%;margin-top: 10%">
+        <el-button type="success" icon="el-icon-check" circle  v-loading.fullscreen.lock="fullscreenLoading"></el-button> <h1>快去邮箱激活账号吧！</h1>
+      </div>
+
+      <div v-show="active == 3" style="margin-left: 20%;margin-top: 10%">
+        <el-button type="success" icon="el-icon-check" circle></el-button> <h1>账号激活成功！</h1>
       </div>
 
     </div>
@@ -50,7 +58,8 @@
 
     export default {
         name: "Register",
-        components: {TopBar},
+        components: {TopBar,},
+        props:[],
         data() {
           //检查邮箱是否已被注册
           const isExist = (rule, value, callback) => {
@@ -79,6 +88,7 @@
           return {
             active: 0,
 
+            fullscreenLoading: false,
 
             //表单区域
             ruleForm: {
@@ -95,7 +105,7 @@
               ],
               userName: [
                 { required: true, message: '请输入用户名', trigger: 'blur' },
-                {min: 3, max: 15, message: '长度在 6 到 15 个字符', trigger: ['blur','change']}
+                {min: 1, max: 15, message: '长度在 1 到 15 个字符', trigger: ['blur','change']}
               ],
 
               password: [
@@ -109,8 +119,29 @@
             }
           };
         },
-
-        methods: {
+        mounted() {
+          let code = this.$route.query.code;
+          if(code!=null){
+            this.active=2;
+            console.log('code  = '+code);
+            this.fullscreenLoading = true;
+            setTimeout(() => {
+              this.fullscreenLoading = false;
+              const res3  = this.$http.get('/hotel/user/activate',{params:{'code':code}});
+              res3.then(result3 =>{
+                if(result3.data.success !== true) {
+                  this.active=2;
+                  return this.$message.error('激活失败');
+                }else {
+                  this.active =3;
+                  this.$router.push('/home');
+                  return this.$message.success('激活成功,正在跳转登录页面...');
+                }
+              });
+            }, 2000);
+          }
+        },
+      methods: {
 
           //表单区域
           next(formName) {
@@ -122,7 +153,6 @@
           },
 
           submitForm(){
-            alert('come in the method');
               const res2  =this.$http.post('/hotel/user/register',this.ruleForm);
 
               res2.then(result2 =>{
