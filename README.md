@@ -60,3 +60,10 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1.编写注册页面
 ```
 
+> 2021-05-17
+
+```
+1:更新了EmptyRoom.vue，增加了入住登记功能
+2：更新了RoomManage.vue,增加了新增客房，行内删除以及行内修改功能
+```
+

@@ -98,13 +98,19 @@
     <!-- 功能区 -->
    <el-table-column
       align="right">
+      
       <template slot="header" >
+
+          <!--添加按钮  -->
+        <el-button type="text" @click="dialogVisible=true">添加</el-button>
+
+
         <el-input
           v-model="search"
           size="mini"
           placeholder="搜索房间类型"/>
       </template>
-      <!-- <template slot-scope="scope">
+      <template slot-scope="scope">
         <el-button
           size="mini"
           @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
@@ -112,21 +118,101 @@
           size="mini"
           type="danger"
           @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-      </template> -->
-    </el-table-column>  
+          
+          
+      </template>
 
+
+    </el-table-column>  
 
 
   </el-table>
 
     <!-- 分页,没想到怎么绑定数据 -->
+    <!-- 一个想法是，获取后台数据的数量，然后显示？（待完善） -->
     <el-pagination
       layout="sizes,prev, pager, next"
       :current-page="page"
       :total="total"
       :page-size="limit">
     </el-pagination>
-  
+
+        
+     <!--添加功能的dialogue  -->
+    <template>
+      <el-dialog
+        title="添加房间"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :before-close="handleClose">
+      
+            <el-form ref="form"  label-width="80px">
+            <el-form-item label="房间类型">
+              <el-input v-model="type" ></el-input>
+            </el-form-item>
+            <el-form-item label="房间号码">
+              <el-input v-model="room"></el-input>
+            </el-form-item>
+            <el-form-item label="床位">
+              <el-input v-model="bedNum"></el-input>
+            </el-form-item>
+            <el-form-item label="房间状态">
+              <el-input v-model="state"></el-input>
+            </el-form-item>   
+            <el-form-item label="价格">
+              <el-input v-model="price"></el-input>
+            </el-form-item>  
+            <el-form-item label="简介">
+              <el-input v-model="introduction"></el-input>
+            </el-form-item>                               
+          </el-form>
+      
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleAdd()">确 定</el-button>
+      </span>
+     </el-dialog>
+    </template>
+      
+    
+
+  <!--修改功能的dialogue  -->
+    <template>
+      <el-dialog
+        title="添加房间"
+        :visible.sync="editDialogu"
+        width="30%"
+        :before-close="handleClose">
+      
+            <el-form ref="form"  label-width="80px">
+            <el-form-item label="房间类型">
+              <el-input v-model="type" ></el-input>
+            </el-form-item>
+            <el-form-item label="房间号码">
+              <el-input v-model="room"></el-input>
+            </el-form-item>
+            <el-form-item label="床位">
+              <el-input v-model="bedNum"></el-input>
+            </el-form-item>
+            <el-form-item label="房间状态">
+              <el-input v-model="state"></el-input>
+            </el-form-item>   
+            <el-form-item label="价格">
+              <el-input v-model="price"></el-input>
+            </el-form-item>  
+            <el-form-item label="简介">
+              <el-input v-model="introduction"></el-input>
+            </el-form-item>                               
+          </el-form>
+      
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="editDialogu = false">取 消</el-button>
+        <el-button type="primary" @click="handleAdd()">修改</el-button>
+      </span>
+     </el-dialog>
+    </template>
+
+
 
 </div>
 </template>
@@ -134,10 +220,22 @@
 
 <script>
   export default {
-    
     data() {
+
       return {
+        //暂用数据
+        introduction: '',
+        price: '',
+        state: '',
+        bedNum: '',
+        room: '',
+        type: '',
         
+        //添加框的控制
+        dialogVisible: false,
+        //修改框的控制
+        editDialogu: false,  
+
         page: 1,      //当前页码,用于翻页
         total: 4,     //总记录数,用于渲染分页
         limit: 3,     //每页记录数
@@ -229,12 +327,42 @@
         return row[property] === value;
       },
 
-      // 数据处理
-      handleEdit(index, row) {
-        console.log(index, row);
+      // 房间添加
+      //思路：首先写一个dialogue，然后在data里面添加对应的数据以及控制dialogue的dialoguevisible，记得进行绑定；
+      //然后添加handleadd事件,该事件是将绑定的数据添加到总数据中（使用push），然后关闭dialogue；最后添加一个button，
+      //点击事件设为弹出dialogue（设置visible的值即可），并且将dialogue的确认按钮和handleadd事件进行绑定，
+      //最后将数据清空，完成。
+      handleAdd(){
+          this.tableData.push({ type: this.type, room: this.room,introduction: this.introduction,
+          price: this.price,state:this.state,bedNum:this.bedNum });
+          this.type='',this.room='',this.introduction='',this.price='',this.state='',this.bedNum='';
+          this.dialogVisible=false
+          this.editDialogu=false
       },
+      handleEdit(index, row) {
+        //房间修改,现在的做法是先将数据复制，然后删除，最后添加新的记录（只想出这个办法，有思路再改）
+        //网上看到有一种方法是让后端重新渲染，不会；
+        //忽然有一个想法，增加一个唯一的id，然后修改时将修改后的数据发送到后台，并且重新渲染（待做）
+       
+          this.price=row.price,this.type=row.type,this.room=row.room,this.introduction=row.introduction,
+          this.state=row.state,this.bedNum=row.bedNum
+          this.editDialogu=true;  
+          this.tableData.splice(index, 1);
+          
+
+
+        //console.log(row.price)
+          
+      },
+
+
+      //房间删除,主要是使用splice函数
       handleDelete(index, row) {
-        console.log(index, row);
+       this.tableData.splice(index, 1);
+       
+      },
+      handleClose(){
+
       }
 
     }
