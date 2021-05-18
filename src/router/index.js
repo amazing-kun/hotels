@@ -6,6 +6,7 @@ import Home from "../views/Home";
 import EmptyRoom from "../views/common/EmptyRoom.vue"
 import Register from "../views/Register";
 import OrderPage from "../views/h_order/OrderPage";
+import TypeStatistics from "../views/search/TypeStatistics";
 
 
 
@@ -46,6 +47,11 @@ const router = new VueRouter({
       path:'/orderPage',
       component: OrderPage,
       name: 'OrderPage'
+    },
+    {
+      path:'/typeStatistics',
+      component: TypeStatistics,
+      name: 'TypeStatistics'
     },
 
 

@@ -69,3 +69,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 4. 初步搭建订单页面中的选择房间页面
 ```
 
+> 2021-05-18
+
+```
+1.编写客房类型选择页面；
+2.编写提交订单业务；
+```
