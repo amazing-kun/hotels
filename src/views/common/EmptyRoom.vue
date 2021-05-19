@@ -117,13 +117,13 @@
 
   </el-table>
 
-    <!-- 分页,没想到怎么绑定数据 -->
+    <!-- 分页,没想到怎么绑定数据
     <el-pagination
       layout="sizes,prev, pager, next"
       :current-page="page"
       :total="total"
       :page-size="limit">
-    </el-pagination>
+    </el-pagination> -->
 
     <!-- 订单dialogue -->
     <template>
@@ -223,11 +223,11 @@
         }],
         //订单数据
         order: [{
-            name: 'a',
-            id: '1',
-            roomNum: '11',
-            tel: '111',
-            notes: '1111',
+            name: 'a',    //用户姓名
+            id: '1',      //身份证
+            roomNum: '11',  //房号
+            tel: '111',     //电话号码
+            notes: '1111',  //备注
            },{
             name: 'b',
             id: '2',
@@ -238,9 +238,27 @@
         ],
         multipleSelection: [],
         //默认搜索状态为空闲的客房
-        search: '空闲'
+        search: ''
       }
     },
+    //初始化页面时候加载数据
+      created() {
+        this.fullscreenLoading = true;
+        setTimeout(() => {
+          this.fullscreenLoading = false;
+          const res3  = this.$http.get('/hotel/room/getEmptyRoom');
+          
+          res3.then(result3 =>{
+            if(result3.data.success !== true) {
+              return this.$message.error('数据获取失败');
+            }else {
+              //这个list后台发送过来的
+              this.tableData = result3.data.data.list;
+              return this.$message.success('数据正在加载...');
+            }
+          });
+        }, 2000);
+      },
 
     methods: {
 
@@ -315,6 +333,21 @@
         this.registerVIsible=false
         //在控制台查看订单是否添加成功
         console.log(this.order);
+        //将更改的数据发送出去
+
+          const res2  =this.$http.post('/hotel/h-order/addorders',this.order);
+
+          res2.then(result2 =>{
+            
+            if(result2.data.success !== true) {
+              this.active--;
+              return this.$message.error('更新失败');
+            }else {
+              this.active++;
+              return this.$message.success('更新成功');
+            }
+          });
+
       },
       handleClose(){
         //可以在这里增加确认关闭的功能（待做）

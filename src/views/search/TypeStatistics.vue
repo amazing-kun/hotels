@@ -139,6 +139,7 @@
           this.buttonLoading = true;
           this.fullscreenLoading = true;
           let list = this.multipleSelection;
+          console.log(list);
           setTimeout(() => {
             this.fullscreenLoading = false;
             this.$router.push({
@@ -147,26 +148,26 @@
               params: {
                 list: list,
               }
-              /*query: {
-                  key: 'key',
-                  msgKey: this.msg
-              }*/
-            })
-          }, 2000);
-        },
 
+            })
+          }, 2000)  ;
+        },
       },
       created() {
         this.fullscreenLoading = true;
         setTimeout(() => {
           this.fullscreenLoading = false;
           const res3  = this.$http.get('/hotel/room/getTypeStatics');
+          alert(res3);
           res3.then(result3 =>{
             if(result3.data.success !== true) {
+              console.log(result3.data);
+              alert(result3.data);
               return this.$message.error('数据获取失败');
-            }else {
+            }else {              
               this.tableData = result3.data.data.list;
               return this.$message.success('数据正在加载...');
+              //console.log(tableData);
             }
           });
         }, 2000);

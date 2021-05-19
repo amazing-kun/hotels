@@ -26,7 +26,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-      redirect: OrderPage,
+      redirect: TypeStatistics,
     },
     {
       path: '/home',
@@ -66,9 +66,10 @@ router.beforeEach((to,from,next) => {
   if(to.path === '/login') return next();
   else if (to.path === '/register') return next();
   else if (to.path === '/orderPage') return next();
+  else if (to.path === '/typeStatistics') return next();
   //获取token
   let tokenStr = window.sessionStorage.getItem('token');
-  if(!tokenStr) return next('/login');
+  // if(!tokenStr) return next('/login');
   next();
 
 });

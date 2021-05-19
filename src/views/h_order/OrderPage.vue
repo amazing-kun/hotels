@@ -155,7 +155,7 @@
         };
       },
       created() {
-
+        console.log(this.page)
         this.fullscreenLoading = true;
         setTimeout(() => {
           this.fullscreenLoading = false;
@@ -200,6 +200,7 @@
           const res2  =this.$http.post('/hotel/h-order/addOrder',this.pData[0]);
 
           res2.then(result2 =>{
+            
             if(result2.data.success !== true) {
               this.active--;
               return this.$message.error('提交订单失败');
