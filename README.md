@@ -75,3 +75,14 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1.编写客房类型选择页面；
 2.编写提交订单业务；
 ```
+
+> 2021-06-19
+
+```
+1:在EmptyRoom和RoomManage中添加了收发数据的请求
+```
+
+
+
+
+
