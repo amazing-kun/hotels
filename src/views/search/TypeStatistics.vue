@@ -89,28 +89,28 @@
 
 
           tableData: [
-            {
-              typeId:1,
-              typeName: '标准单人房',
-              bedNum: 1,
-              price: '288',
-              remainNum: 8,
-              introduction:'一段漂亮的简介',
-            }, {
-              typeId:1,
-              typeName: '高级双床房',
-              bedNum: 2,
-              price: '488',
-              remainNum: 3,
-              introduction:'一段漂亮的简介',
-            }, {
-              typeId:1,
-              typeName: '商务大床房',
-              bedNum: 2,
-              price: '388',
-              remainNum: 0,
-              introduction:'一段漂亮的简介',
-            },
+            // {
+            //   typeId:1,
+            //   typeName: '标准单人房',
+            //   bedNum: 1,
+            //   price: '288',
+            //   remainNum: 8,
+            //   introduction:'一段漂亮的简介',
+            // }, {
+            //   typeId:1,
+            //   typeName: '高级双床房',
+            //   bedNum: 2,
+            //   price: '488',
+            //   remainNum: 3,
+            //   introduction:'一段漂亮的简介',
+            // }, {
+            //   typeId:1,
+            //   typeName: '商务大床房',
+            //   bedNum: 2,
+            //   price: '388',
+            //   remainNum: 0,
+            //   introduction:'一段漂亮的简介',
+            // },
 
           ],
           multipleSelection: []
@@ -160,7 +160,7 @@
         this.fullscreenLoading = true;
         setTimeout(() => {
           this.fullscreenLoading = false;
-          const res3  = this.$http.get('/hotel/room/getTypeStatics');
+          const res3  = this.$http.get('/hotel/room-type/getAllRoomType');
           res3.then(result3 =>{
             if(result3.data.success !== true) {
               return this.$message.error('数据获取失败');

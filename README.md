@@ -75,3 +75,16 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1.编写客房类型选择页面；
 2.编写提交订单业务；
 ```
+
+> 2021-05-19
+
+```
+1.编写订单步骤下的登记入住页面
+```
+
+> 2021-05-20
+
+```
+1.编写单独的登记入住修改页面
+2.编写退房（无请求）页面
+```

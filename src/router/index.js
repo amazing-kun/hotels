@@ -7,6 +7,8 @@ import EmptyRoom from "../views/common/EmptyRoom.vue"
 import Register from "../views/Register";
 import OrderPage from "../views/h_order/OrderPage";
 import TypeStatistics from "../views/search/TypeStatistics";
+import CheckIn from "../views/registerRecord/CheckIn";
+import CheckOut from "../views/registerRecord/CheckOut";
 
 
 
@@ -26,7 +28,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-      redirect: OrderPage,
+      redirect: CheckOut,
     },
     {
       path: '/home',
@@ -53,6 +55,16 @@ const router = new VueRouter({
       component: TypeStatistics,
       name: 'TypeStatistics'
     },
+    {
+      path:'/checkIn',
+      component: CheckIn,
+      name: 'CheckIn'
+    },
+    {
+      path:'/checkOut',
+      component: CheckOut,
+      name: 'CheckOut'
+    },
 
 
   ]
@@ -66,6 +78,7 @@ router.beforeEach((to,from,next) => {
   if(to.path === '/login') return next();
   else if (to.path === '/register') return next();
   else if (to.path === '/orderPage') return next();
+  else if (to.path === '/checkIn') return next();
   //获取token
   let tokenStr = window.sessionStorage.getItem('token');
   if(!tokenStr) return next('/login');
