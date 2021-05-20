@@ -280,6 +280,25 @@
         search: ''
       }
     },
+      created() {
+        this.fullscreenLoading = true;
+        setTimeout(() => {
+          this.fullscreenLoading = false;
+          const res3  = this.$http.get('/hotel/room/getRooms');
+
+          res3.then(result3 =>{
+            if(result3.data.success !== true) {
+
+              return this.$message.error('数据获取失败');
+            }else {
+              
+              this.tableData = result3.data.data.list;
+              return this.$message.success('数据正在加载...');
+
+            }
+          });
+        }, 2000);
+      },
 
     methods: {
 
@@ -359,7 +378,18 @@
       //房间删除,主要是使用splice函数
       handleDelete(index, row) {
        this.tableData.splice(index, 1);
-       
+          const res2  =this.$http.post('/hotel/h-order/updateRoom',this.tableData);
+
+          res2.then(result2 =>{
+            
+            if(result2.data.success !== true) {
+              this.active--;
+              return this.$message.error('更新失败');
+            }else {
+              this.active++;
+              return this.$message.success('更新成功');
+            }
+          });      
       },
       handleClose(){
 

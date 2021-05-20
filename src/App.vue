@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created(){
+    fetch("http://rap2api.taobao.org/app/mock/283412/user/login",{
+      method:"get"
+    })
+  }
 }
 </script>
 

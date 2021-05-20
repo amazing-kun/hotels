@@ -79,7 +79,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 > 2021-05-19
 
 ```
-1.编写订单步骤下的登记入住页面
+1:在EmptyRoom和RoomManage中添加了收发数据的请求
+2.编写订单步骤下的登记入住页面
 ```
 
 > 2021-05-20
