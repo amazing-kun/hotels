@@ -43,7 +43,7 @@
       prop="bedNum"
       label="床位"
       width="100"
-      :filters="[{ text: '1', value: '1' }, { text: '2', value: '2' },{text: '3',value: '3'}]"
+      :filters="[{ text: '1', value: '1' }, { text: '2', value: '2' },{text: '3',value: '3'},{text: '4',value: '4'}]"
       :filter-method="filterTag_bedNum"
       filter-placement="bottom-end">
       <!--往表格中渲染数据  -->
@@ -74,21 +74,14 @@
       show-overflow-tooltip
       align="center">
     </el-table-column>
-    
-    <el-table-column
+
+        <el-table-column
       prop="price"
       label="价格"
-      width="100"
-      :filters="[{ text: '300', value: '300' }, { text: '500', value: '500' }]"
-      :filter-method="filterTag_price"
-      filter-placement="bottom-end">     
-      <!-- 填充数据 -->
-      <template slot-scope="scope">
-        <el-tag
-          :type="scope.row.price === '500' ? 'primary' : 'success'"
-          disable-transitions>{{scope.row.price}}</el-tag>
-      </template>
+      show-overflow-tooltip
+      align="center">
     </el-table-column>
+
 
     <!-- 功能区 -->
    <el-table-column
@@ -256,86 +249,158 @@
 
           // },
           {
-
+           //name是多余的属性   
           name: '王小虎',
           introduction: '直白的简介',
-          price: '300',
+          price: '￥2134',
           roomState: '空闲',
           bedNum: '3',
-          room: '340',
+          room: '201',
           type: '双人房'
         }, {
 
           name: '王小虎',
           introduction: '文雅的简介',
-          price: '500',
+          price: '￥2546',
           roomState: '预定',
-          bedNum: '3',
-          room: '330',
+          bedNum: '2',
+          room: '202',
           type: '棋牌套房'
         }, {
 
           name: '王小虎',
           introduction: '复杂的简介',
-          price: '300',
+          price: '￥2741',
           roomState: '使用',
-          bedNum: '3',
-          room: '320',
+          bedNum: '1',
+          room: '203',
           type: '双人房'
         }, {
 
           name: '晓东',
           introduction: ' 简单的简介',
-          price: '300',
-          roomState: '使用',
-          bedNum: '3',
-          room: '320',
+          price: '￥3900',
+          roomState: '预定',
+          bedNum: '4',
+          room: '204',
           type: '单人房'
         }, {
 
-          name: '王小虎',
+          name: '李欣',
           introduction: '想不出词的简介',
-          price: '300',
-          roomState: '使用',
+          price: '￥2900',
+          roomState: '空闲',
           bedNum: '3',
-          room: '320',
+          room: '205',
           type: '棋牌套房'
-        }, {
-
-          name: '王小虎',
-          introduction: '精彩绝伦的简介',
-          price: '300',
-          roomState: '使用',
-          bedNum: '3',
-          room: '320',
-          type: '双人房'
         }, {
 
           name: '王小虎',
           introduction: '平淡的简介',
-          price: '300',
+          price: '￥2584',
           roomState: '使用',
           bedNum: '3',
-          room: '320',
-          type: '双人房'
+          room: '206',
+          type: '家庭套房'
         }, {
 
           name: '王小虎',
           introduction: '让人看不懂的简介',
-          price: '300',
-          roomState: '使用',
+          price: '￥2376',
+          roomState: '空闲',
           bedNum: '3',
-          room: '320',
+          room: '301',
           type: '双人房'
         }, {
 
           name: '王小虎',
-          introduction: '简介',
-          price: '500',
+          introduction: '直击人心的简介',
+          price: '￥2846',
+          roomState: '预定',
+          bedNum: '3',
+          room: '302',
+          type: '棋牌套房'
+        }, {
+
+          name: '王淼',
+          introduction: '令人深思的简介',
+          price: '￥2856',
           roomState: '使用',
           bedNum: '3',
-          room: '310',
+          room: '303',
+          type: '单人房'
+        },{
+
+          name: '艺馨',
+          introduction: '看起来很官方的简介',
+          price: '￥2375',
+          roomState: '空闲',
+          bedNum: '3',
+          room: '304',
+          type: '总统套房'
+        },{
+
+          name: '秋月',
+          introduction: '振聋发聩的简介',
+          price: '￥2958',
+          roomState: '预定',
+          bedNum: '3',
+          room: '305',
+          type: '双人房'
+        },{
+
+          name: '钟白',
+          introduction: '精彩绝伦的简介',
+          price: '￥2386',
+          roomState: '使用',
+          bedNum: '3',
+          room: '306',
           type: '棋牌套房'
+        },{
+
+          name: '郑勇',
+          introduction: '简介',
+          price: '￥2536',
+          roomState: '使用',
+          bedNum: '3',
+          room: '401',
+          type: '双人房'
+        },{
+
+          name: '王小虎',
+          introduction: '精彩绝伦的简介',
+          price: '￥2735',
+          roomState: '空闲',
+          bedNum: '3',
+          room: '402',
+          type: '单人房'
+        },{
+
+          name: '王小虎',
+          introduction: '精彩绝伦的简介',
+          price: '￥2948',
+          roomState: '使用',
+          bedNum: '3',
+          room: '403',
+          type: '总统套房'
+        },{
+
+          name: '王小虎',
+          introduction: '精彩绝伦的简介',
+          price: '￥2746',
+          roomState: '空闲',
+          bedNum: '3',
+          room: '404',
+          type: '双人房'
+        },{
+
+          name: '王小虎',
+          introduction: '精彩绝伦的简介',
+          price: '￥2496',
+          roomState: '使用',
+          bedNum: '3',
+          room: '405',
+          type: '双人房'
         }],
         multipleSelection: [],
         search: ''
