@@ -161,13 +161,6 @@
           //订单修改dialogue
           editDialogu:false,
 
-
-        name: '',       //姓名
-        id: '',         //身份证
-        orderNum: '',    //订单号
-        tel: '',        //号码
-        notes: '',      //备注
-        registerVIsible: false,     //控制订单信息的dialogue
         //分页（没想好怎么做，待做）
         page: 1,      //当前页码,用于翻页
         total: 4,     //总记录数,用于渲染分页
