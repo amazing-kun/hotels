@@ -9,6 +9,7 @@ import OrderPage from "../views/h_order/OrderPage";
 import TypeStatistics from "../views/search/TypeStatistics";
 import CheckIn from "../views/registerRecord/CheckIn";
 import CheckOut from "../views/registerRecord/CheckOut";
+import OrderManage from "../views/common/orderManage.vue"
 
 
 
@@ -28,11 +29,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-<<<<<<< HEAD
-      redirect: CheckOut,
-=======
       redirect: TypeStatistics,
->>>>>>> 86cc1fd00415aae10a7f1b43d9c25ff95e63ac70
     },
     {
       path: '/home',
@@ -53,6 +50,11 @@ const router = new VueRouter({
       path:'/orderPage',
       component: OrderPage,
       name: 'OrderPage'
+    },
+    {
+      path:'/orderManage',
+      component: OrderManage,
+      name: 'OrderManage'
     },
     {
       path:'/typeStatistics',
@@ -82,11 +84,7 @@ router.beforeEach((to,from,next) => {
   if(to.path === '/login') return next();
   else if (to.path === '/register') return next();
   else if (to.path === '/orderPage') return next();
-<<<<<<< HEAD
-  else if (to.path === '/checkIn') return next();
-=======
   else if (to.path === '/typeStatistics') return next();
->>>>>>> 86cc1fd00415aae10a7f1b43d9c25ff95e63ac70
   //获取token
   let tokenStr = window.sessionStorage.getItem('token');
   // if(!tokenStr) return next('/login');

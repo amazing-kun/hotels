@@ -89,3 +89,9 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1.编写单独的登记入住修改页面
 2.编写退房（无请求）页面
 ```
+
+> 2021-05-21
+
+```
+1：在common目录下添加了orderManage.vue（订单管理）
+```

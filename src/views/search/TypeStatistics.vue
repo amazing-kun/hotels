@@ -157,12 +157,8 @@
         this.fullscreenLoading = true;
         setTimeout(() => {
           this.fullscreenLoading = false;
-<<<<<<< HEAD
-          const res3  = this.$http.get('/hotel/room-type/getAllRoomType');
-=======
           const res3  = this.$http.get('/hotel/room/getTypeStatics');
           alert(res3);
->>>>>>> 86cc1fd00415aae10a7f1b43d9c25ff95e63ac70
           res3.then(result3 =>{
             if(result3.data.success !== true) {
               console.log(result3.data);
