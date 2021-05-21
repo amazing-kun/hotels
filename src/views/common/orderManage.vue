@@ -106,7 +106,7 @@
   <!--修改功能的dialogue  -->
     <template>
       <el-dialog
-        title="添加房间"
+        title="修改订单"
         :visible.sync="editDialogu"
         width="30%"
         :before-close="handleClose">
@@ -170,67 +170,79 @@
         //订单数据
         tableData: [{
           userName: '李四',
-          price: '300',
+          price: '￥3200',
           orderState: '进行中',
           orderNum: '2028147392',
           orderType: '总统套房'
         }, {        
           userName: '周兄',
-          price: '300',
+          price: '￥1200',
           orderState: '进行中',
           orderNum: '20289843734',
           orderType: '双人房'
         },{        
           userName: '周小海',
-          price: '300',
+          price: '￥2100',
           orderState: '进行中',
           orderNum: '20289843734',
           orderType: '单人房'
         },{        
           userName: '周大海',
-          price: '300',
-          orderState: '进行中',
+          price: '￥1232',
+          orderState: '已结束',
           orderNum: '20289843734',
           orderType: '双人房'
         },{
           userName: '张三',
-          price: '500',
+          price: '￥1223',
           orderState: '进行中',
           orderNum: '2934833729',
           orderType: '棋牌套房'
         }, ,{        
           userName: '莉丝',
-          price: '300',
-          orderState: '进行中',
+          price: '￥1654',
+          orderState: '已结束',
           orderNum: '203439843734',
           orderType: '单人房'
         },{        
           userName: '何晓',
-          price: '300',
+          price: '￥1856',
           orderState: '进行中',
           orderNum: '2098443533734',
           orderType: '单人房'
         },{        
           userName: '何源',
-          price: '300',
-          orderState: '进行中',
+          price: '￥1467',
+          orderState: '已结束',
           orderNum: '20278843734',
           orderType: '双人房'
         },{        
           userName: '周小海',
-          price: '300',
+          price: '￥1498',
           orderState: '进行中',
           orderNum: '20289843734',
           orderType: '单人房'
         },{        
-          userName: '周大海',
-          price: '300',
+          userName: '赵三',
+          price: '￥1594',
+          orderState: '已结束',
+          orderNum: '202898324734',
+          orderType: '棋牌套房'
+        }, {        
+          userName: '王五',
+          price: '￥1394',
           orderState: '进行中',
+          orderNum: '20282342434',
+          orderType: '单人房'
+        }, {        
+          userName: '周大海',
+          price: '￥1959',
+          orderState: '已结束',
           orderNum: '20289843734',
           orderType: '双人房'
         }, {
           userName: '王小明',
-          price: '500',
+          price: '￥1665',
           orderState: '已结束',
           orderNum: '20182793829',
           orderType: '家庭套房'

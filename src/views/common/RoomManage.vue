@@ -474,11 +474,6 @@
 
           this.editDialogu=true; 
           // this.tableData.splice(index, 1);
-          
-
-
-        //console.log(row.price)
-          
       },
 
 
