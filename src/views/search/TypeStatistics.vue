@@ -105,6 +105,76 @@
               introduction:'一段漂亮的简介',
             }, {
               typeId:1,
+              typeName: '单人房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '商务大床房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 4,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '棋牌套房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 5,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '总统套房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 6,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '家庭套房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '大床房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '商务大床房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '商务大床房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '商务大床房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
+              typeName: '商务大床房',
+              bedNum: 2,
+              price: '388',
+              remainNum: 0,
+              introduction:'一段漂亮的简介',
+            }, {
+              typeId:1,
               typeName: '商务大床房',
               bedNum: 2,
               price: '388',
@@ -161,7 +231,6 @@
           res3.then(result3 =>{
             if(result3.data.success !== true) {
               console.log(result3.data);
-              alert(result3.data);
               return this.$message.error('数据获取失败');
             }else {
               this.tableData = result3.data.data.list;

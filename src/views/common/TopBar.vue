@@ -17,7 +17,7 @@
               </el-submenu>
               <el-submenu index="3">
                 <template slot="title">管理中心</template>
-                <el-menu-item index="3-1" @click="$router.push('/OrderPage')">订单记录</el-menu-item>
+                <el-menu-item index="3-1" @click="$router.push('/orderManage')">订单管理</el-menu-item>
                 <el-menu-item index="3-2" @click="$router.push('/checkIn')">登记入住</el-menu-item>
                 <el-menu-item index="3-3" @click="$router.push('/checkOut')">退房</el-menu-item>
               </el-submenu>

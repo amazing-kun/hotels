@@ -10,6 +10,8 @@ import TypeStatistics from "../views/search/TypeStatistics";
 import CheckIn from "../views/registerRecord/CheckIn";
 import CheckOut from "../views/registerRecord/CheckOut";
 import RoomManage from "../views/common/RoomManage";
+import OrderManage from "../views/common/orderManage.vue"
+
 
 
 
@@ -29,7 +31,7 @@ const router = new VueRouter({
     },
     {
       path: '/',
-      redirect: TypeStatistics,
+      redirect: RoomManage,
     },
     {
       path: '/home',
@@ -50,6 +52,11 @@ const router = new VueRouter({
       path:'/orderPage',
       component: OrderPage,
       name: 'OrderPage'
+    },
+    {
+      path:'/orderManage',
+      component: OrderManage,
+      name: 'OrderManage'
     },
     {
       path:'/typeStatistics',
