@@ -4,9 +4,6 @@
         <el-dialog :visible.sync="dialogFormVisible" width="380px" center="false">
           <div class="el-dialog_header" >
             <span class="el-dialog_title">账号登录</span>
-            <p  class="login-tips">
-              一个应用可以授权多个商家
-            </p>
           </div>
 
           <div class="el-dialog__body">

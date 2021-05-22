@@ -1,19 +1,20 @@
 <template>
 <div>
   <!-- 在表头这里绑定搜索的数据源 -->
+  <TopBar></TopBar>
   <el-table
     ref="multipleTable"
     :data="tableData.filter(data => !search || data.type.toLowerCase().includes(search.toLowerCase()))"
     tooltip-effect="dark"
     style="width: 100%"
     @selection-change="handleSelectionChange">
-    
+
     <!-- 选择框 -->
     <el-table-column
       type="selection"
       width="55">
     </el-table-column>
-    
+
     <!-- 顶部框 -->
     <el-table-column
       prop="type"
@@ -66,7 +67,7 @@
       width="100"
       :filters="[{ text: '空闲', value: '空闲' }, { text: '预定', value: '预定' },{text: '使用',value: '使用'}]"
       :filter-method="filterTag_state"
-      filter-placement="bottom-end">     
+      filter-placement="bottom-end">
       <template slot-scope="scope">
         <el-tag
           :type="scope.row.state === '空闲' ? 'primary' : 'success'"
@@ -79,14 +80,14 @@
       label="简介"
       show-overflow-tooltip>
     </el-table-column>
-    
+
     <el-table-column
       prop="price"
       label="价格"
       width="100"
       :filters="[{ text: '300', value: '300' }, { text: '500', value: '500' }]"
       :filter-method="filterTag_price"
-      filter-placement="bottom-end">     
+      filter-placement="bottom-end">
       <!-- 填充数据 -->
       <template slot-scope="scope">
         <el-tag
@@ -98,7 +99,7 @@
     <!-- 功能区 -->
    <el-table-column
       align="right">
-      
+
       <template slot="header" >
 
           <!--添加按钮  -->
@@ -118,12 +119,12 @@
           size="mini"
           type="danger"
           @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
-          
-          
+
+
       </template>
 
 
-    </el-table-column>  
+    </el-table-column>
 
 
   </el-table>
@@ -137,7 +138,7 @@
       :page-size="limit">
     </el-pagination>
 
-        
+
      <!--添加功能的dialogue  -->
     <template>
       <el-dialog
@@ -145,7 +146,7 @@
         :visible.sync="dialogVisible"
         width="30%"
         :before-close="handleClose">
-      
+
             <el-form ref="form"  label-width="80px">
             <el-form-item label="房间类型">
               <el-input v-model="type" ></el-input>
@@ -158,23 +159,23 @@
             </el-form-item>
             <el-form-item label="房间状态">
               <el-input v-model="state"></el-input>
-            </el-form-item>   
+            </el-form-item>
             <el-form-item label="价格">
               <el-input v-model="price"></el-input>
-            </el-form-item>  
+            </el-form-item>
             <el-form-item label="简介">
               <el-input v-model="introduction"></el-input>
-            </el-form-item>                               
+            </el-form-item>
           </el-form>
-      
+
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="handleAdd()">确 定</el-button>
       </span>
      </el-dialog>
     </template>
-      
-    
+
+
 
   <!--修改功能的dialogue  -->
     <template>
@@ -183,7 +184,7 @@
         :visible.sync="editDialogu"
         width="30%"
         :before-close="handleClose">
-      
+
             <el-form ref="form"  label-width="80px">
             <el-form-item label="房间类型">
               <el-input v-model="type" ></el-input>
@@ -196,15 +197,15 @@
             </el-form-item>
             <el-form-item label="房间状态">
               <el-input v-model="state"></el-input>
-            </el-form-item>   
+            </el-form-item>
             <el-form-item label="价格">
               <el-input v-model="price"></el-input>
-            </el-form-item>  
+            </el-form-item>
             <el-form-item label="简介">
               <el-input v-model="introduction"></el-input>
-            </el-form-item>                               
+            </el-form-item>
           </el-form>
-      
+
       <span slot="footer" class="dialog-footer">
         <el-button @click="editDialogu = false">取 消</el-button>
         <el-button type="primary" @click="handleAdd()">修改</el-button>
@@ -219,7 +220,10 @@
 
 
 <script>
+  import TopBar from "./TopBar";
   export default {
+    name:"RoomManage",
+    components: {TopBar},
     data() {
 
       return {
@@ -230,11 +234,11 @@
         bedNum: '',
         room: '',
         type: '',
-        
+
         //添加框的控制
         dialogVisible: false,
         //修改框的控制
-        editDialogu: false,  
+        editDialogu: false,
 
         page: 1,      //当前页码,用于翻页
         total: 4,     //总记录数,用于渲染分页
@@ -291,7 +295,7 @@
 
               return this.$message.error('数据获取失败');
             }else {
-              
+
               this.tableData = result3.data.data.list;
               return this.$message.success('数据正在加载...');
 
@@ -315,7 +319,7 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
-      
+
       // 标签筛选功能
       resetDateFilter() {
         this.$refs.filterTable.clearFilter('date');
@@ -331,16 +335,16 @@
       },
       filterTag_state(value, row) {
         return row.state === value;
-      },    
+      },
       filterTag_bedNum(value, row) {
         return row.bedNum === value;
-      },          
+      },
       filterTag_room(value, row) {
         return row.room === value;
-      },    
+      },
       filterTag_type(value, row) {
         return row.type === value;
-      },    
+      },
       filterHandler(value, row, column) {
         const property = column['property'];
         return row[property] === value;
@@ -362,16 +366,16 @@
         //房间修改,现在的做法是先将数据复制，然后删除，最后添加新的记录（只想出这个办法，有思路再改）
         //网上看到有一种方法是让后端重新渲染，不会；
         //忽然有一个想法，增加一个唯一的id，然后修改时将修改后的数据发送到后台，并且重新渲染（待做）
-       
+
           this.price=row.price,this.type=row.type,this.room=row.room,this.introduction=row.introduction,
           this.state=row.state,this.bedNum=row.bedNum
-          this.editDialogu=true;  
+          this.editDialogu=true;
           this.tableData.splice(index, 1);
-          
+
 
 
         //console.log(row.price)
-          
+
       },
 
 
@@ -381,7 +385,7 @@
           const res2  =this.$http.post('/hotel/h-order/updateRoom',this.tableData);
 
           res2.then(result2 =>{
-            
+
             if(result2.data.success !== true) {
               this.active--;
               return this.$message.error('更新失败');
@@ -389,7 +393,7 @@
               this.active++;
               return this.$message.success('更新成功');
             }
-          });      
+          });
       },
       handleClose(){
 

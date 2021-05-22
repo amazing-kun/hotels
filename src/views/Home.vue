@@ -1,9 +1,7 @@
 <template>
     <div>
-          <TopBar></TopBar>
-          <Room></Room>
-    </div>
 
+    </div>
 </template>
 
 <script>

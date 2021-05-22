@@ -70,15 +70,19 @@
                 </el-form-item>
               </el-form>
             </div>
-            <el-button type="danger" style="margin-left: 85%" @click="">退房</el-button>
+            <el-button type="danger" style="margin-left: 85%" @click="nextPage(collapseItem)">退房</el-button>
           </el-collapse-item>
 
         </el-collapse>
         <div>
           <el-button
-            style="margin-top: 200px;margin-left: 80%"
+            style="margin-left: 80%"
             type="primary" @click="nextPage()">一键退房</el-button>
         </div>
+      </div>
+
+      <div v-show="active == 5" style="margin-left: 0%;margin-top: 10%">
+        <el-button type="success" icon="el-icon-check" circle></el-button> <h1>退房成功！</h1>
       </div>
     </div>
   </div>
@@ -282,8 +286,22 @@
         });
       },
 
-      nextPage(){
-        if (this.active++ > 4) this.active = 0;
+      nextPage(item){
+        //if (this.active++ > 4) this.active = 0;
+        this.fullscreenLoading = true;
+        setTimeout(() => {
+          const res3  = this.$http.post('/hotel/register-record/registerOut',{roomId:item.roomId});
+          res3.then(result3 =>{
+            if(result3.data.success !== true) {
+              return this.$message.error('退房失败');
+            }else {
+              //this.collapseData = result3.data.data;
+              this.active=5;
+              return this.$message.success('退房成功,数据重新加载...');
+            }
+          });
+          this.fullscreenLoading = false;
+        }, 800);
       },
 
       deleteRow(index, rows) {
